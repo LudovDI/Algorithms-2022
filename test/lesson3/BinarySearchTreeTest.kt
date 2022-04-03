@@ -49,7 +49,7 @@ class BinarySearchTreeTest : AbstractBinarySearchTreeTest() {
         assertFailsWith<NoSuchElementException>("Something was supposedly returned after the elements ended") {
             binarySet.iterator().next()
         }
-        assertFailsWith<NoSuchElementException>("Something was supposedly returned after the elements ended") {
+        assertFalse {
             binarySet.iterator().hasNext()
         }
     }

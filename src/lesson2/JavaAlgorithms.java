@@ -4,6 +4,7 @@ import kotlin.NotImplementedError;
 import kotlin.Pair;
 
 import java.util.Arrays;
+import java.util.BitSet;
 
 @SuppressWarnings("unused")
 public class JavaAlgorithms {
@@ -138,26 +139,63 @@ public class JavaAlgorithms {
      */
     static public int calcPrimesNumber(int limit) {
         /*
-        O(nlog(log(n))) - трудоемкость решета Эратосфена
+        O(n/log(log(n))) - трудоемкость решета Эратосфена
         R(n) - битовый массив размера n
          */
-        if (limit <= 1) return 0;
-        boolean[] array = new boolean[limit + 1];
-        array[0] = true;
-        array[1] = true;
-        int result = 0;
-        for (int i = 2; i <= Math.sqrt(limit); i++) {
-            if (!array[i]) {
-                result++;
-            }
-            for (int j = i + 1; j < limit + 1; j++) {
-                if (j % i == 0) array[j] = true;
+        int sqr_lim;
+        boolean[] is_prime = new boolean[limit + 1];
+        int x2, y2;
+        int i, j;
+        int n;
+
+        if (limit < 2) return 0;
+        // Инициализация решета
+        sqr_lim = (int) Math.sqrt(limit);
+        for (i = 4; i <= limit; i++) {
+            is_prime[i] = false;
+        }
+        is_prime[2] = true;
+        if (limit > 2) is_prime[3] = true;
+        // Предположительно простые — это целые с нечётным числом
+        // представлений в данных квадратных формах.
+        // x2 и y2 — это квадраты i и j.
+        x2 = 0;
+        for (i = 1; i <= sqr_lim; i++) {
+            x2 += 2 * i - 1;
+            y2 = 0;
+            for (j = 1; j <= sqr_lim; j++) {
+                y2 += 2 * j - 1;
+
+                n = 4 * x2 + y2;
+                if ((n <= limit) && (n % 12 == 1 || n % 12 == 5))
+                    is_prime[n] = !is_prime[n];
+
+                // n = 3 * x2 + y2;
+                n -= x2;
+                if ((n <= limit) && (n % 12 == 7))
+                    is_prime[n] = !is_prime[n];
+
+                // n = 3 * x2 - y2;
+                n -= 2 * y2;
+                if ((i > j) && (n <= limit) && (n % 12 == 11))
+                    is_prime[n] = !is_prime[n];
             }
         }
-        for (int i = (int) Math.sqrt(limit) + 1; i < limit + 1; i++) {
-            if (!array[i]) {
-                result++;
+
+        // Отсеиваем кратные квадратам простых чисел в интервале [5, sqrt(limit)].
+        // (основной этап не может их отсеять)
+        for (i = 5; i <= sqr_lim; ++i) {
+            if (is_prime[i]) {
+                n = i * i;
+                for (j = n; j <= limit; j += n)
+                    is_prime[j] = false;
             }
+        }
+
+        int result = 0;
+
+        for (i = 0; i <= limit; i++) {
+            if (is_prime[i]) result++;
         }
         return result;
     }
