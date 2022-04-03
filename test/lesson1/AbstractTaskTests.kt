@@ -51,6 +51,7 @@ abstract class AbstractTaskTests : AbstractFileTests() {
         } finally {
             File("temp.txt").delete()
         }
+
     }
 
     protected fun sortAddresses(sortAddresses: (String, String) -> Unit) {

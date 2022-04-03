@@ -2,6 +2,9 @@ package lesson3
 
 import org.junit.jupiter.api.Tag
 import org.junit.jupiter.api.Test
+import java.util.*
+import kotlin.test.*
+
 
 class BinarySearchTreeTest : AbstractBinarySearchTreeTest() {
 
@@ -30,12 +33,25 @@ class BinarySearchTreeTest : AbstractBinarySearchTreeTest() {
     @Tag("5")
     fun removeTestJava() {
         doRemoveTest()
+        val binarySet = create()
+        assertFalse(binarySet.remove(0))
+        assertFalse(binarySet.remove(null))
+        binarySet.add(1)
+        assertFalse(binarySet.remove(2))
+        assertTrue(binarySet.remove(1))
     }
 
     @Test
     @Tag("5")
     fun iteratorTestJava() {
         doIteratorTest()
+        val binarySet = create()
+        assertFailsWith<NoSuchElementException>("Something was supposedly returned after the elements ended") {
+            binarySet.iterator().next()
+        }
+        assertFailsWith<NoSuchElementException>("Something was supposedly returned after the elements ended") {
+            binarySet.iterator().hasNext()
+        }
     }
 
     @Test
