@@ -39,8 +39,8 @@ public class JavaTasks {
      */
     static public void sortTimes(String inputName, String outputName) {
         /*
-        O(nlog(n)) - чтение из файла, запись в файл и заполнение массива это O(n), а быстрая сортировка O(nlog(n))
-        R(n) - массив, список и Map
+        Т = O(nlog(n)) - чтение из файла, запись в файл и заполнение массива это O(n), а быстрая сортировка O(nlog(n))
+        R = О(n) - массив, список и Map
          */
         Map<Integer, String> myMap = new HashMap<>();
         List<Integer> list = new ArrayList<>();
@@ -151,8 +151,8 @@ public class JavaTasks {
      */
     static public void sortTemperatures(String inputName, String outputName) {
         /*
-        O(nlog(n)) - чтение из файла, запись в файл и заполнение массива это O(n), а быстрая сортировка O(nlog(n))
-        R(n) - массив, список и Map
+        Т = O(nlog(n)) - чтение из файла, запись в файл и заполнение массива это O(n), а быстрая сортировка O(nlog(n))
+        R = О(n) - массив, список и Map
         */
         Map<Integer, String> myMap = new HashMap<>();
         List<Integer> list = new ArrayList<>();
@@ -215,8 +215,8 @@ public class JavaTasks {
      */
     static public void sortSequence(String inputName, String outputName) {
         /*
-        O(n) - чтение из файла, запись в файл и заполнение массива это O(n)
-        R(n) - список и Map
+        Т = O(n) - чтение из файла, запись в файл и заполнение массива это O(n)
+        R = О(n) - список и Map
          */
         Map<Integer, Integer> myMap = new HashMap<>();
         List<Integer> list = new ArrayList<>();

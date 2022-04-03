@@ -102,8 +102,8 @@ public class JavaAlgorithms {
      */
     static public String longestCommonSubstring(String first, String second) {
         /*
-        O(l1*l2*min(l1, l2)) - вложенный цикл из 3 уровней каждый с n итерациями
-        R(min(l1, l2)) - в худшем случае создается строка, длиной с минимальную из исходных строк
+        Т = O(l1*l2*min(l1, l2)) - вложенный цикл из 3 уровней каждый с n итерациями
+        R = О(min(l1, l2)) - в худшем случае создается строка, длиной с минимальную из исходных строк
          */
         String result = "";
         int maxLength = 0;
@@ -139,8 +139,8 @@ public class JavaAlgorithms {
      */
     static public int calcPrimesNumber(int limit) {
         /*
-        O(n/log(log(n))) - трудоемкость решета Аткина
-        R(n) - битовый массив размера n
+        Т = O(n/log(log(n))) - трудоемкость решета Аткина
+        R = О(n) - битовый массив размера n
          */
         int sqr_lim;
         boolean[] is_prime = new boolean[limit + 1];

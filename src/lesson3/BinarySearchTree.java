@@ -99,8 +99,8 @@ public class BinarySearchTree<T extends Comparable<T>> extends AbstractSet<T> im
     @Override
     public boolean remove(Object o) {
         /*
-        O(log(n)) - чтение множества узлов дерева
-        R(1) - размер используемой памяти от размера дерева не зависит
+        Т = O(log(n)) - чтение множества узлов дерева
+        R = О(1) - размер используемой памяти от размера дерева не зависит
          */
         if (!contains(o)) return false;
         T t = (T) o;
@@ -244,8 +244,8 @@ public class BinarySearchTree<T extends Comparable<T>> extends AbstractSet<T> im
         @Override
         public boolean hasNext() {
             /*
-            O(1) - считываем первый элемент очереди
-            R(1) - размер используемой памяти не зависит от размера очереди
+            Т = O(1) - считываем первый элемент очереди
+            R = О(1) - размер используемой памяти не зависит от размера очереди
              */
             return queue.peek() != null;
         }
@@ -266,8 +266,8 @@ public class BinarySearchTree<T extends Comparable<T>> extends AbstractSet<T> im
         @Override
         public T next() {
             /*
-            O(1) - считываем первый элемент очереди
-            R(1) - размер используемой памяти не зависит от размера очереди
+            Т = O(1) - считываем первый элемент очереди
+            R = О(1) - размер используемой памяти не зависит от размера очереди
              */
             if (queue.peek() == null) throw new NoSuchElementException();
             else return queue.poll().value;
