@@ -139,7 +139,7 @@ public class JavaAlgorithms {
      */
     static public int calcPrimesNumber(int limit) {
         /*
-        O(n/log(log(n))) - трудоемкость решета Эратосфена
+        O(n/log(log(n))) - трудоемкость решета Аткина
         R(n) - битовый массив размера n
          */
         int sqr_lim;
