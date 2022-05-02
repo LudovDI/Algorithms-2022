@@ -1,7 +1,7 @@
 package lesson4;
 
 import java.util.*;
-import kotlin.NotImplementedError;
+
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -92,8 +92,65 @@ public class Trie extends AbstractSet<String> implements Set<String> {
     @NotNull
     @Override
     public Iterator<String> iterator() {
-        // TODO
-        throw new NotImplementedError();
+        return new TrieIterator();
     }
 
+    public class TrieIterator implements Iterator<String> {
+
+        private final List<String> resultList;
+        private String lastLine;
+
+        private TrieIterator() {
+            resultList = new ArrayList<>();
+            if (root != null) {
+                traversal("", root);
+            }
+        }
+
+        private void traversal(String path, Node currentNode) {
+            if (currentNode.children != null) {
+                for (Character symbol: currentNode.children.keySet()) {
+                    if (symbol == (char) 0)
+                        resultList.add(path);
+                    else
+                        traversal(path + symbol, currentNode.children.get(symbol));
+                }
+            }
+        }
+
+        /**
+         * Проверка наличия следующего элемента
+         * Трудоемкость T = O(1) - считываем первый элемент списка
+         * Ресурсоемкость R = О(1) - размер используемой памяти не зависит от размера списка
+         */
+        @Override
+        public boolean hasNext() {
+            return !resultList.isEmpty();
+        }
+
+        /**
+         * Получение следующего элемента
+         * Трудоемкость Т = O(1) - считываем первый элемент списка
+         * Ресурсоемкость R = О(1) - размер используемой памяти не зависит от размера списка
+         */
+        @Override
+        public String next() {
+            if (resultList.isEmpty()) throw new NoSuchElementException();
+            lastLine = resultList.get(0);
+            resultList.remove(0);
+            return lastLine;
+        }
+
+        /**
+         * Удаление элемента
+         * Трудоемкость Т = O(maxLength) - чтобы удалить элемент, нужно найти его в дереве
+         * Ресурсоемкость R = O(1)
+         */
+        @Override
+        public void remove() {
+            if (lastLine == null) throw new IllegalStateException();
+            Trie.this.remove(lastLine);
+            lastLine = null;
+        }
+    }
 }
